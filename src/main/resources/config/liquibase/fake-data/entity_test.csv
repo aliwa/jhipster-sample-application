@@ -1,0 +1,2 @@
+id;a_string;a_integer;a_long;a_big_decimal;a_float;a_double;a_boolean;a_local_date;a_zoned_date_time;a_instant;a_duration;a_uuid;a_blob;a_blob_content_type;a_any_blob;a_any_blob_content_type;a_image_blob;a_image_blob_content_type;a_text_blob
+1;"}w`X@UMx.8";49;84;10;11;87;true;2021-04-13;2021-04-12T14:46:42;2021-04-12T22:15:25;1122;01e4249c-cba9-4e13-9171-79c90d6af206;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.png;image/png;../fake-data/blob/hipster.txt

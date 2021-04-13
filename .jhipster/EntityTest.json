@@ -1,0 +1,119 @@
+{
+  "name": "EntityTest",
+  "fields": [
+    {
+      "fieldName": "aString",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "pattern", "unique"],
+      "fieldValidateRulesMinlength": "10",
+      "fieldValidateRulesMaxlength": "100",
+      "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    {
+      "fieldName": "aInteger",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min", "max", "unique"],
+      "fieldValidateRulesMin": "10",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "aLong",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "min", "max", "unique"],
+      "fieldValidateRulesMin": "10",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "aBigDecimal",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min", "max", "unique"],
+      "fieldValidateRulesMin": "10",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "aFloat",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required", "min", "max", "unique"],
+      "fieldValidateRulesMin": "10",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "aDouble",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required", "min", "max", "unique"],
+      "fieldValidateRulesMin": "10",
+      "fieldValidateRulesMax": "100"
+    },
+    {
+      "fieldName": "aBoolean",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "aLocalDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "aZonedDateTime",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "aInstant",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "aDuration",
+      "fieldType": "Duration",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "aUUID",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "aBlob",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any",
+      "fieldValidateRules": ["required", "minbytes", "maxbytes", "unique"],
+      "fieldValidateRulesMinbytes": "10",
+      "fieldValidateRulesMaxbytes": "100"
+    },
+    {
+      "fieldName": "aAnyBlob",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any",
+      "fieldValidateRules": ["required", "minbytes", "maxbytes", "unique"],
+      "fieldValidateRulesMinbytes": "10",
+      "fieldValidateRulesMaxbytes": "100"
+    },
+    {
+      "fieldName": "aImageBlob",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required", "minbytes", "maxbytes", "unique"],
+      "fieldValidateRulesMinbytes": "10",
+      "fieldValidateRulesMaxbytes": "100"
+    },
+    {
+      "fieldName": "aTextBlob",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "entity_test",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["myApp"],
+  "changelogDate": "20210413031842"
+}
