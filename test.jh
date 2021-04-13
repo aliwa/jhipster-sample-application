@@ -1,0 +1,32 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity EntityTest {
+	aString String required minlength(10) maxlength(100) pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/) unique,
+    aInteger Integer required min(10) max(100) unique,
+    aLong Long required min(10) max(100) unique,
+	aBigDecimal BigDecimal required min(10) max(100) unique,
+	aFloat Float required min(10) max(100) unique,
+	aDouble Double required min(10) max(100) unique,
+  	aBoolean Boolean required unique,
+	aLocalDate LocalDate required unique,
+	aZonedDateTime ZonedDateTime required unique,
+	aInstant Instant required unique,
+	aDuration Duration required unique,
+ 	aUUID UUID required unique,
+	aBlob Blob required minbytes(10) maxbytes(100) unique,
+	aAnyBlob AnyBlob required minbytes(10) maxbytes(100) unique,
+	aImageBlob ImageBlob required minbytes(10) maxbytes(100) unique,
+	aTextBlob TextBlob required unique,
+}
+    
