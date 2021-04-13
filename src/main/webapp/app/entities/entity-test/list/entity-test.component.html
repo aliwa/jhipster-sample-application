@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="EntityTestHeading">
+    <span jhiTranslate="myApp.entityTest.home.title">Entity Tests</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.entityTest.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-entity-test"
+        [routerLink]="['/entity-test/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.entityTest.home.createLabel"> Create a new Entity Test </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="entityTests?.length === 0">
+    <span jhiTranslate="myApp.entityTest.home.notFound">No entityTests found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="entityTests && entityTests.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aString">A String</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aInteger">A Integer</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aLong">A Long</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aBigDecimal">A Big Decimal</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aFloat">A Float</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aDouble">A Double</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aBoolean">A Boolean</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aLocalDate">A Local Date</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aZonedDateTime">A Zoned Date Time</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aInstant">A Instant</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aDuration">A Duration</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aUUID">A UUID</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aBlob">A Blob</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aAnyBlob">A Any Blob</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aImageBlob">A Image Blob</span></th>
+          <th scope="col"><span jhiTranslate="myApp.entityTest.aTextBlob">A Text Blob</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entityTest of entityTests; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/entity-test', entityTest.id, 'view']">{{ entityTest.id }}</a>
+          </td>
+          <td>{{ entityTest.aString }}</td>
+          <td>{{ entityTest.aInteger }}</td>
+          <td>{{ entityTest.aLong }}</td>
+          <td>{{ entityTest.aBigDecimal }}</td>
+          <td>{{ entityTest.aFloat }}</td>
+          <td>{{ entityTest.aDouble }}</td>
+          <td>{{ entityTest.aBoolean }}</td>
+          <td>{{ entityTest.aLocalDate | formatMediumDate }}</td>
+          <td>{{ entityTest.aZonedDateTime | formatMediumDatetime }}</td>
+          <td>{{ entityTest.aInstant | formatMediumDatetime }}</td>
+          <td title="{{ entityTest.aDuration }}">{{ entityTest.aDuration | duration }}</td>
+          <td>{{ entityTest.aUUID }}</td>
+          <td>
+            <a *ngIf="entityTest.aBlob" (click)="openFile(entityTest.aBlob, entityTest.aBlobContentType)" jhiTranslate="entity.action.open"
+              >open</a
+            >
+            <span *ngIf="entityTest.aBlob">{{ entityTest.aBlobContentType }}, {{ byteSize(entityTest.aBlob) }}</span>
+          </td>
+          <td>
+            <a
+              *ngIf="entityTest.aAnyBlob"
+              (click)="openFile(entityTest.aAnyBlob, entityTest.aAnyBlobContentType)"
+              jhiTranslate="entity.action.open"
+              >open</a
+            >
+            <span *ngIf="entityTest.aAnyBlob">{{ entityTest.aAnyBlobContentType }}, {{ byteSize(entityTest.aAnyBlob) }}</span>
+          </td>
+          <td>
+            <a *ngIf="entityTest.aImageBlob" (click)="openFile(entityTest.aImageBlob, entityTest.aImageBlobContentType)">
+              <img
+                [src]="'data:' + entityTest.aImageBlobContentType + ';base64,' + entityTest.aImageBlob"
+                style="max-height: 30px"
+                alt="entityTest image"
+              />
+            </a>
+            <span *ngIf="entityTest.aImageBlob">{{ entityTest.aImageBlobContentType }}, {{ byteSize(entityTest.aImageBlob) }}</span>
+          </td>
+          <td>{{ entityTest.aTextBlob }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/entity-test', entityTest.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/entity-test', entityTest.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(entityTest)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
