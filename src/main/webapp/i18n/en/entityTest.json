@@ -1,0 +1,39 @@
+{
+  "myApp": {
+    "entityTest": {
+      "home": {
+        "title": "Entity Tests",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Entity Test",
+        "createOrEditLabel": "Create or edit a Entity Test",
+        "notFound": "No Entity Tests found"
+      },
+      "created": "A new Entity Test is created with identifier {{ param }}",
+      "updated": "A Entity Test is updated with identifier {{ param }}",
+      "deleted": "A Entity Test is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Entity Test {{ id }}?"
+      },
+      "detail": {
+        "title": "Entity Test"
+      },
+      "id": "ID",
+      "aString": "A String",
+      "aInteger": "A Integer",
+      "aLong": "A Long",
+      "aBigDecimal": "A Big Decimal",
+      "aFloat": "A Float",
+      "aDouble": "A Double",
+      "aBoolean": "A Boolean",
+      "aLocalDate": "A Local Date",
+      "aZonedDateTime": "A Zoned Date Time",
+      "aInstant": "A Instant",
+      "aDuration": "A Duration",
+      "aUUID": "A UUID",
+      "aBlob": "A Blob",
+      "aAnyBlob": "A Any Blob",
+      "aImageBlob": "A Image Blob",
+      "aTextBlob": "A Text Blob"
+    }
+  }
+}
