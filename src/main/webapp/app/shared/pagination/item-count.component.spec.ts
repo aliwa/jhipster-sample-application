@@ -1,4 +1,7 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { TranslateDirective } from 'app/shared/language/translate.directive';
 
 import { ItemCountComponent } from './item-count.component';
 
@@ -9,7 +12,8 @@ describe('ItemCountComponent test', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [ItemCountComponent],
+        imports: [TranslateModule.forRoot()],
+        declarations: [ItemCountComponent, TranslateDirective],
       }).compileComponents();
     })
   );
@@ -24,6 +28,15 @@ describe('ItemCountComponent test', () => {
       expect(comp.first).toBeUndefined();
       expect(comp.second).toBeUndefined();
       expect(comp.total).toBeUndefined();
+    });
+
+    it('should set calculated numbers to undefined if the page value is not yet defined', () => {
+      // GIVEN
+      comp.params = { page: undefined, totalItems: 0, itemsPerPage: 10 };
+
+      // THEN
+      expect(comp.first).toBeUndefined();
+      expect(comp.second).toBeUndefined();
     });
 
     it('should change the content on page change', () => {
@@ -42,6 +55,16 @@ describe('ItemCountComponent test', () => {
       expect(comp.first).toBe(11);
       expect(comp.second).toBe(20);
       expect(comp.total).toBe(100);
+    });
+
+    it('should set the second number to totalItems if this is the last page which contains less than itemsPerPage items', () => {
+      // GIVEN
+      comp.params = { page: 2, totalItems: 16, itemsPerPage: 10 };
+
+      // THEN
+      expect(comp.first).toBe(11);
+      expect(comp.second).toBe(16);
+      expect(comp.total).toBe(16);
     });
   });
 });
