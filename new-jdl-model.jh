@@ -1,0 +1,40 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType monolith,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+  dto * with mapstruct
+  service * with serviceClass
+}
+
+entity A {
+	aString String	required minlength(100) maxlength(1000) pattern(/^[A-Z][a-z]+\d$/) unique,
+    aInteger Integer	required min(100) max(1000) unique,
+	aLong Long	required min(100) max(1000) unique,
+	aBigDecimal BigDecimal	required min(100) max(1000) unique,
+	aFloat Float	required min(100) max(1000) unique,
+	aDouble Double	required min(100) max(1000) unique,
+	aEnum AEnum	required unique,
+	aBoolean Boolean	required unique,
+	aLocalDate LocalDate	required unique,
+	aZonedDateTime ZonedDateTime	required unique,
+	aInstant Instant	required unique,
+    aDuration Duration	required unique,
+	aUUID UUID	required unique,
+	aBlob Blob	required minbytes(100) maxbytes(1000) unique,
+	aAnyBlob AnyBlob	required minbytes(100) maxbytes(1000) unique,
+	ImageBlob ImageBlob	required minbytes(100) maxbytes(1000) unique,
+	aTextBlob TextBlob	required unique
+
+}
+
+enum AEnum {
+    FRENCH (French), ENGLISH(English), SPANISH(Spanish)
+}
+ 
