@@ -1,0 +1,40 @@
+{
+  "myApp": {
+    "a": {
+      "home": {
+        "title": "AS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new A",
+        "createOrEditLabel": "Create or edit a A",
+        "notFound": "No AS found"
+      },
+      "created": "A new A is created with identifier {{ param }}",
+      "updated": "A A is updated with identifier {{ param }}",
+      "deleted": "A A is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete A {{ id }}?"
+      },
+      "detail": {
+        "title": "A"
+      },
+      "id": "ID",
+      "aString": "A String",
+      "aInteger": "A Integer",
+      "aLong": "A Long",
+      "aBigDecimal": "A Big Decimal",
+      "aFloat": "A Float",
+      "aDouble": "A Double",
+      "aEnum": "A Enum",
+      "aBoolean": "A Boolean",
+      "aLocalDate": "A Local Date",
+      "aZonedDateTime": "A Zoned Date Time",
+      "aInstant": "A Instant",
+      "aDuration": "A Duration",
+      "aUUID": "A UUID",
+      "aBlob": "A Blob",
+      "aAnyBlob": "A Any Blob",
+      "imageBlob": "Image Blob",
+      "aTextBlob": "A Text Blob"
+    }
+  }
+}
