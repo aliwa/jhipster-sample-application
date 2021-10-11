@@ -1,0 +1,111 @@
+<div>
+  <h2 id="page-heading" data-cy="AHeading">
+    <span jhiTranslate="myApp.a.home.title">AS</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="myApp.a.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-a"
+        [routerLink]="['/a/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="myApp.a.home.createLabel"> Create a new A </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="aS?.length === 0">
+    <span jhiTranslate="myApp.a.home.notFound">No aS found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="aS && aS.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aString">A String</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aInteger">A Integer</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aLong">A Long</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aBigDecimal">A Big Decimal</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aFloat">A Float</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aDouble">A Double</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aEnum">A Enum</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aBoolean">A Boolean</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aLocalDate">A Local Date</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aZonedDateTime">A Zoned Date Time</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aInstant">A Instant</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aDuration">A Duration</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aUUID">A UUID</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aBlob">A Blob</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aAnyBlob">A Any Blob</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.imageBlob">Image Blob</span></th>
+          <th scope="col"><span jhiTranslate="myApp.a.aTextBlob">A Text Blob</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of aS; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/a', a.id, 'view']">{{ a.id }}</a>
+          </td>
+          <td>{{ a.aString }}</td>
+          <td>{{ a.aInteger }}</td>
+          <td>{{ a.aLong }}</td>
+          <td>{{ a.aBigDecimal }}</td>
+          <td>{{ a.aFloat }}</td>
+          <td>{{ a.aDouble }}</td>
+          <td jhiTranslate="{{ 'myApp.AEnum.' + a.aEnum }}">{{ a.aEnum }}</td>
+          <td>{{ a.aBoolean }}</td>
+          <td>{{ a.aLocalDate | formatMediumDate }}</td>
+          <td>{{ a.aZonedDateTime | formatMediumDatetime }}</td>
+          <td>{{ a.aInstant | formatMediumDatetime }}</td>
+          <td title="{{ a.aDuration }}">{{ a.aDuration | duration }}</td>
+          <td>{{ a.aUUID }}</td>
+          <td>
+            <a *ngIf="a.aBlob" (click)="openFile(a.aBlob, a.aBlobContentType)" jhiTranslate="entity.action.open">open</a>
+            <span *ngIf="a.aBlob">{{ a.aBlobContentType }}, {{ byteSize(a.aBlob) }}</span>
+          </td>
+          <td>
+            <a *ngIf="a.aAnyBlob" (click)="openFile(a.aAnyBlob, a.aAnyBlobContentType)" jhiTranslate="entity.action.open">open</a>
+            <span *ngIf="a.aAnyBlob">{{ a.aAnyBlobContentType }}, {{ byteSize(a.aAnyBlob) }}</span>
+          </td>
+          <td>
+            <a *ngIf="a.imageBlob" (click)="openFile(a.imageBlob, a.imageBlobContentType)">
+              <img [src]="'data:' + a.imageBlobContentType + ';base64,' + a.imageBlob" style="max-height: 30px" alt="a image" />
+            </a>
+            <span *ngIf="a.imageBlob">{{ a.imageBlobContentType }}, {{ byteSize(a.imageBlob) }}</span>
+          </td>
+          <td>{{ a.aTextBlob }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/a', a.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/a', a.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(a)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

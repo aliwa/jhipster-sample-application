@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="a">
+      <h2 data-cy="aDetailsHeading"><span jhiTranslate="myApp.a.detail.title">A</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ a.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aString">A String</span></dt>
+        <dd>
+          <span>{{ a.aString }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aInteger">A Integer</span></dt>
+        <dd>
+          <span>{{ a.aInteger }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aLong">A Long</span></dt>
+        <dd>
+          <span>{{ a.aLong }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aBigDecimal">A Big Decimal</span></dt>
+        <dd>
+          <span>{{ a.aBigDecimal }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aFloat">A Float</span></dt>
+        <dd>
+          <span>{{ a.aFloat }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aDouble">A Double</span></dt>
+        <dd>
+          <span>{{ a.aDouble }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aEnum">A Enum</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.AEnum.' + a.aEnum }}">{{ a.aEnum }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aBoolean">A Boolean</span></dt>
+        <dd>
+          <span>{{ a.aBoolean }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aLocalDate">A Local Date</span></dt>
+        <dd>
+          <span>{{ a.aLocalDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aZonedDateTime">A Zoned Date Time</span></dt>
+        <dd>
+          <span>{{ a.aZonedDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aInstant">A Instant</span></dt>
+        <dd>
+          <span>{{ a.aInstant | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aDuration">A Duration</span></dt>
+        <dd>
+          <span>{{ a.aDuration | duration }} ({{ a.aDuration }})</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aUUID">A UUID</span></dt>
+        <dd>
+          <span>{{ a.aUUID }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aBlob">A Blob</span></dt>
+        <dd>
+          <div *ngIf="a.aBlob">
+            <a (click)="openFile(a.aBlob, a.aBlobContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ a.aBlobContentType }}, {{ byteSize(a.aBlob) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aAnyBlob">A Any Blob</span></dt>
+        <dd>
+          <div *ngIf="a.aAnyBlob">
+            <a (click)="openFile(a.aAnyBlob, a.aAnyBlobContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ a.aAnyBlobContentType }}, {{ byteSize(a.aAnyBlob) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.imageBlob">Image Blob</span></dt>
+        <dd>
+          <div *ngIf="a.imageBlob">
+            <a (click)="openFile(a.imageBlob, a.imageBlobContentType)">
+              <img [src]="'data:' + a.imageBlobContentType + ';base64,' + a.imageBlob" style="max-width: 100%" alt="a image" />
+            </a>
+            {{ a.imageBlobContentType }}, {{ byteSize(a.imageBlob) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.a.aTextBlob">A Text Blob</span></dt>
+        <dd>
+          <span>{{ a.aTextBlob }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/a', a.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

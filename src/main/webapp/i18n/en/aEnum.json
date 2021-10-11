@@ -1,0 +1,10 @@
+{
+  "myApp": {
+    "AEnum": {
+      "null": "",
+      "FRENCH": "French",
+      "ENGLISH": "English",
+      "SPANISH": "Spanish"
+    }
+  }
+}
