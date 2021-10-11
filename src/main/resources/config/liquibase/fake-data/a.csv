@@ -1,0 +1,1 @@
+id;a_string;a_integer;a_long;a_big_decimal;a_float;a_double;a_enum;a_boolean;a_local_date;a_zoned_date_time;a_instant;a_duration;a_uuid;a_blob;a_blob_content_type;a_any_blob;a_any_blob_content_type;image_blob;image_blob_content_type;a_text_blob

@@ -1,6 +1,6 @@
 package com.aliwa.myapp;
 
-import com.aliwa.myapp.JhipsterSampleApplicationApp;
+import com.aliwa.myapp.MyApp;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,6 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@SpringBootTest(classes = JhipsterSampleApplicationApp.class)
+@SpringBootTest(classes = MyApp.class)
 public @interface IntegrationTest {
 }
