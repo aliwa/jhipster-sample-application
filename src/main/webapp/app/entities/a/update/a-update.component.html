@@ -1,0 +1,555 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-a-heading" data-cy="ACreateUpdateHeading" jhiTranslate="myApp.a.home.createOrEditLabel">Create or edit a A</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aString" for="field_aString">A String</label>
+          <input type="text" class="form-control" name="aString" id="field_aString" data-cy="aString" formControlName="aString" />
+          <div *ngIf="editForm.get('aString')!.invalid && (editForm.get('aString')!.dirty || editForm.get('aString')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aString')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aString')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 100 }"
+            >
+              This field is required to be at least 100 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aString')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be longer than 1000 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aString')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'A String' }"
+            >
+              This field should follow pattern for "A String".
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aInteger" for="field_aInteger">A Integer</label>
+          <input type="number" class="form-control" name="aInteger" id="field_aInteger" data-cy="aInteger" formControlName="aInteger" />
+          <div *ngIf="editForm.get('aInteger')!.invalid && (editForm.get('aInteger')!.dirty || editForm.get('aInteger')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aInteger')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aInteger')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 100 }"
+            >
+              This field should be at least 100.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aInteger')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be more than 1000.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('aInteger')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aLong" for="field_aLong">A Long</label>
+          <input type="number" class="form-control" name="aLong" id="field_aLong" data-cy="aLong" formControlName="aLong" />
+          <div *ngIf="editForm.get('aLong')!.invalid && (editForm.get('aLong')!.dirty || editForm.get('aLong')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('aLong')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aLong')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 100 }"
+            >
+              This field should be at least 100.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aLong')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be more than 1000.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('aLong')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aBigDecimal" for="field_aBigDecimal">A Big Decimal</label>
+          <input
+            type="number"
+            class="form-control"
+            name="aBigDecimal"
+            id="field_aBigDecimal"
+            data-cy="aBigDecimal"
+            formControlName="aBigDecimal"
+          />
+          <div *ngIf="editForm.get('aBigDecimal')!.invalid && (editForm.get('aBigDecimal')!.dirty || editForm.get('aBigDecimal')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aBigDecimal')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aBigDecimal')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 100 }"
+            >
+              This field should be at least 100.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aBigDecimal')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be more than 1000.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('aBigDecimal')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aFloat" for="field_aFloat">A Float</label>
+          <input type="number" class="form-control" name="aFloat" id="field_aFloat" data-cy="aFloat" formControlName="aFloat" />
+          <div *ngIf="editForm.get('aFloat')!.invalid && (editForm.get('aFloat')!.dirty || editForm.get('aFloat')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('aFloat')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aFloat')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 100 }"
+            >
+              This field should be at least 100.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aFloat')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be more than 1000.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('aFloat')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aDouble" for="field_aDouble">A Double</label>
+          <input type="number" class="form-control" name="aDouble" id="field_aDouble" data-cy="aDouble" formControlName="aDouble" />
+          <div *ngIf="editForm.get('aDouble')!.invalid && (editForm.get('aDouble')!.dirty || editForm.get('aDouble')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aDouble')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aDouble')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 100 }"
+            >
+              This field should be at least 100.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aDouble')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 1000 }"
+            >
+              This field cannot be more than 1000.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('aDouble')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aEnum" for="field_aEnum">A Enum</label>
+          <select class="form-control" name="aEnum" formControlName="aEnum" id="field_aEnum" data-cy="aEnum">
+            <option [ngValue]="null">{{ 'myApp.AEnum.null' | translate }}</option>
+            <option value="FRENCH">{{ 'myApp.AEnum.FRENCH' | translate }}</option>
+            <option value="ENGLISH">{{ 'myApp.AEnum.ENGLISH' | translate }}</option>
+            <option value="SPANISH">{{ 'myApp.AEnum.SPANISH' | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('aEnum')!.invalid && (editForm.get('aEnum')!.dirty || editForm.get('aEnum')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('aEnum')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aBoolean" for="field_aBoolean">A Boolean</label>
+          <input type="checkbox" class="form-check" name="aBoolean" id="field_aBoolean" data-cy="aBoolean" formControlName="aBoolean" />
+          <div *ngIf="editForm.get('aBoolean')!.invalid && (editForm.get('aBoolean')!.dirty || editForm.get('aBoolean')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aBoolean')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aLocalDate" for="field_aLocalDate">A Local Date</label>
+          <div class="input-group">
+            <input
+              id="field_aLocalDate"
+              data-cy="aLocalDate"
+              type="text"
+              class="form-control"
+              name="aLocalDate"
+              ngbDatepicker
+              #aLocalDateDp="ngbDatepicker"
+              formControlName="aLocalDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="aLocalDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+          <div *ngIf="editForm.get('aLocalDate')!.invalid && (editForm.get('aLocalDate')!.dirty || editForm.get('aLocalDate')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aLocalDate')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aZonedDateTime" for="field_aZonedDateTime">A Zoned Date Time</label>
+          <div class="d-flex">
+            <input
+              id="field_aZonedDateTime"
+              data-cy="aZonedDateTime"
+              type="datetime-local"
+              class="form-control"
+              name="aZonedDateTime"
+              formControlName="aZonedDateTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="
+              editForm.get('aZonedDateTime')!.invalid && (editForm.get('aZonedDateTime')!.dirty || editForm.get('aZonedDateTime')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aZonedDateTime')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('aZonedDateTime')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aInstant" for="field_aInstant">A Instant</label>
+          <div class="d-flex">
+            <input
+              id="field_aInstant"
+              data-cy="aInstant"
+              type="datetime-local"
+              class="form-control"
+              name="aInstant"
+              formControlName="aInstant"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('aInstant')!.invalid && (editForm.get('aInstant')!.dirty || editForm.get('aInstant')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aInstant')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('aInstant')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aDuration" for="field_aDuration">A Duration</label>
+          <input type="text" class="form-control" name="aDuration" id="field_aDuration" data-cy="aDuration" formControlName="aDuration" />
+          <div *ngIf="editForm.get('aDuration')!.invalid && (editForm.get('aDuration')!.dirty || editForm.get('aDuration')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aDuration')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('aDuration')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aUUID" for="field_aUUID">A UUID</label>
+          <input type="text" class="form-control" name="aUUID" id="field_aUUID" data-cy="aUUID" formControlName="aUUID" />
+          <div *ngIf="editForm.get('aUUID')!.invalid && (editForm.get('aUUID')!.dirty || editForm.get('aUUID')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('aUUID')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aBlob" for="field_aBlob">A Blob</label>
+          <div>
+            <div *ngIf="editForm.get('aBlob')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-left"
+                (click)="openFile(editForm.get('aBlob')!.value, editForm.get('aBlobContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-left">{{ editForm.get('aBlobContentType')!.value }}, {{ byteSize(editForm.get('aBlob')!.value) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ aBlob: null }); editForm.patchValue({ aBlobContentType: null })"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_aBlob"
+              data-cy="aBlob"
+              (change)="setFileData($event, 'aBlob', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="aBlob" id="field_aBlob" data-cy="aBlob" formControlName="aBlob" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="aBlobContentType"
+            id="field_aBlobContentType"
+            formControlName="aBlobContentType"
+          />
+          <div *ngIf="editForm.get('aBlob')!.invalid && (editForm.get('aBlob')!.dirty || editForm.get('aBlob')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('aBlob')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aAnyBlob" for="field_aAnyBlob">A Any Blob</label>
+          <div>
+            <div *ngIf="editForm.get('aAnyBlob')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-left"
+                (click)="openFile(editForm.get('aAnyBlob')!.value, editForm.get('aAnyBlobContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-left"
+                >{{ editForm.get('aAnyBlobContentType')!.value }}, {{ byteSize(editForm.get('aAnyBlob')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ aAnyBlob: null }); editForm.patchValue({ aAnyBlobContentType: null })"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_aAnyBlob"
+              data-cy="aAnyBlob"
+              (change)="setFileData($event, 'aAnyBlob', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="aAnyBlob" id="field_aAnyBlob" data-cy="aAnyBlob" formControlName="aAnyBlob" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="aAnyBlobContentType"
+            id="field_aAnyBlobContentType"
+            formControlName="aAnyBlobContentType"
+          />
+          <div *ngIf="editForm.get('aAnyBlob')!.invalid && (editForm.get('aAnyBlob')!.dirty || editForm.get('aAnyBlob')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aAnyBlob')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.imageBlob" for="field_imageBlob">Image Blob</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('imageBlobContentType')!.value + ';base64,' + editForm.get('imageBlob')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('imageBlob')!.value"
+              alt="a image"
+            />
+            <div *ngIf="editForm.get('imageBlob')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left"
+                >{{ editForm.get('imageBlobContentType')!.value }}, {{ byteSize(editForm.get('imageBlob')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('imageBlob', 'imageBlobContentType', 'file_imageBlob')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_imageBlob"
+              data-cy="imageBlob"
+              (change)="setFileData($event, 'imageBlob', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="imageBlob" id="field_imageBlob" data-cy="imageBlob" formControlName="imageBlob" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="imageBlobContentType"
+            id="field_imageBlobContentType"
+            formControlName="imageBlobContentType"
+          />
+          <div *ngIf="editForm.get('imageBlob')!.invalid && (editForm.get('imageBlob')!.dirty || editForm.get('imageBlob')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('imageBlob')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="myApp.a.aTextBlob" for="field_aTextBlob">A Text Blob</label>
+          <textarea class="form-control" name="aTextBlob" id="field_aTextBlob" data-cy="aTextBlob" formControlName="aTextBlob"></textarea>
+          <div *ngIf="editForm.get('aTextBlob')!.invalid && (editForm.get('aTextBlob')!.dirty || editForm.get('aTextBlob')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aTextBlob')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
