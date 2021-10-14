@@ -1,0 +1,111 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="anEntity">
+      <h2 data-cy="anEntityDetailsHeading"><span jhiTranslate="myApp.anEntity.detail.title">An Entity</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ anEntity.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aString">A String</span></dt>
+        <dd>
+          <span>{{ anEntity.aString }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aInteger">A Integer</span></dt>
+        <dd>
+          <span>{{ anEntity.aInteger }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aLong">A Long</span></dt>
+        <dd>
+          <span>{{ anEntity.aLong }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aBigDecimal">A Big Decimal</span></dt>
+        <dd>
+          <span>{{ anEntity.aBigDecimal }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aFloat">A Float</span></dt>
+        <dd>
+          <span>{{ anEntity.aFloat }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aDouble">A Double</span></dt>
+        <dd>
+          <span>{{ anEntity.aDouble }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aEnum">A Enum</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'myApp.AEnum.' + anEntity.aEnum }}">{{ anEntity.aEnum }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aBoolean">A Boolean</span></dt>
+        <dd>
+          <span>{{ anEntity.aBoolean }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aLocalDate">A Local Date</span></dt>
+        <dd>
+          <span>{{ anEntity.aLocalDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aZonedDateTime">A Zoned Date Time</span></dt>
+        <dd>
+          <span>{{ anEntity.aZonedDateTime | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aInstant">A Instant</span></dt>
+        <dd>
+          <span>{{ anEntity.aInstant | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aDuration">A Duration</span></dt>
+        <dd>
+          <span>{{ anEntity.aDuration | duration }} ({{ anEntity.aDuration }})</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aUUID">A UUID</span></dt>
+        <dd>
+          <span>{{ anEntity.aUUID }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aBlob">A Blob</span></dt>
+        <dd>
+          <div *ngIf="anEntity.aBlob">
+            <a (click)="openFile(anEntity.aBlob, anEntity.aBlobContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ anEntity.aBlobContentType }}, {{ byteSize(anEntity.aBlob) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aAnyBlob">A Any Blob</span></dt>
+        <dd>
+          <div *ngIf="anEntity.aAnyBlob">
+            <a (click)="openFile(anEntity.aAnyBlob, anEntity.aAnyBlobContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ anEntity.aAnyBlobContentType }}, {{ byteSize(anEntity.aAnyBlob) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.imageBlob">Image Blob</span></dt>
+        <dd>
+          <div *ngIf="anEntity.imageBlob">
+            <a (click)="openFile(anEntity.imageBlob, anEntity.imageBlobContentType)">
+              <img
+                [src]="'data:' + anEntity.imageBlobContentType + ';base64,' + anEntity.imageBlob"
+                style="max-width: 100%"
+                alt="anEntity image"
+              />
+            </a>
+            {{ anEntity.imageBlobContentType }}, {{ byteSize(anEntity.imageBlob) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="myApp.anEntity.aTextBlob">A Text Blob</span></dt>
+        <dd>
+          <span>{{ anEntity.aTextBlob }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/an-entity', anEntity.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

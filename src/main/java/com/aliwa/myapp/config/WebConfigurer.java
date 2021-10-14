@@ -3,7 +3,6 @@ package com.aliwa.myapp.config;
 import static java.net.URLDecoder.decode;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.*;
@@ -23,6 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import tech.jhipster.config.JHipsterConstants;
 import tech.jhipster.config.JHipsterProperties;
+import tech.jhipster.config.h2.H2ConfigurationHelper;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
@@ -47,6 +47,9 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
             log.info("Web application configuration, using profiles: {}", (Object[]) env.getActiveProfiles());
         }
 
+        if (env.acceptsProfiles(Profiles.of(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT))) {
+            initH2Console(servletContext);
+        }
         log.info("Web application fully configured");
     }
 
@@ -75,13 +78,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
      * Resolve path prefix to static resources.
      */
     private String resolvePathPrefix() {
-        String fullExecutablePath;
-        try {
-            fullExecutablePath = decode(this.getClass().getResource("").getPath(), StandardCharsets.UTF_8.name());
-        } catch (UnsupportedEncodingException e) {
-            /* try without decoding if this ever happens */
-            fullExecutablePath = this.getClass().getResource("").getPath();
-        }
+        String fullExecutablePath = decode(this.getClass().getResource("").getPath(), StandardCharsets.UTF_8);
         String rootPath = Paths.get(".").toUri().normalize().getPath();
         String extractedPath = fullExecutablePath.replace(rootPath, "");
         int extractionEndIndex = extractedPath.indexOf("target/");
@@ -95,7 +92,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = jHipsterProperties.getCors();
-        if (!CollectionUtils.isEmpty(config.getAllowedOrigins())) {
+        if (!CollectionUtils.isEmpty(config.getAllowedOrigins()) || !CollectionUtils.isEmpty(config.getAllowedOriginPatterns())) {
             log.debug("Registering CORS filter");
             source.registerCorsConfiguration("/api/**", config);
             source.registerCorsConfiguration("/management/**", config);
@@ -105,5 +102,13 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
             source.registerCorsConfiguration("/swagger-ui/**", config);
         }
         return new CorsFilter(source);
+    }
+
+    /**
+     * Initializes H2 console.
+     */
+    private void initH2Console(ServletContext servletContext) {
+        log.debug("Initialize H2 console");
+        H2ConfigurationHelper.initH2Console(servletContext);
     }
 }

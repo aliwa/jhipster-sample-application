@@ -7,7 +7,6 @@ import com.aliwa.myapp.service.MailService;
 import com.aliwa.myapp.service.UserService;
 import com.aliwa.myapp.service.dto.AdminUserDTO;
 import com.aliwa.myapp.service.dto.PasswordChangeDTO;
-import com.aliwa.myapp.service.dto.UserDTO;
 import com.aliwa.myapp.web.rest.errors.*;
 import com.aliwa.myapp.web.rest.vm.KeyAndPasswordVM;
 import com.aliwa.myapp.web.rest.vm.ManagedUserVM;
