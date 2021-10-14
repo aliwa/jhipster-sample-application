@@ -1,0 +1,40 @@
+{
+  "myApp": {
+    "anEntity": {
+      "home": {
+        "title": "An Entities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new An Entity",
+        "createOrEditLabel": "Create or edit a An Entity",
+        "notFound": "No An Entities found"
+      },
+      "created": "A new An Entity is created with identifier {{ param }}",
+      "updated": "A An Entity is updated with identifier {{ param }}",
+      "deleted": "A An Entity is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete An Entity {{ id }}?"
+      },
+      "detail": {
+        "title": "An Entity"
+      },
+      "id": "ID",
+      "aString": "A String",
+      "aInteger": "A Integer",
+      "aLong": "A Long",
+      "aBigDecimal": "A Big Decimal",
+      "aFloat": "A Float",
+      "aDouble": "A Double",
+      "aEnum": "A Enum",
+      "aBoolean": "A Boolean",
+      "aLocalDate": "A Local Date",
+      "aZonedDateTime": "A Zoned Date Time",
+      "aInstant": "A Instant",
+      "aDuration": "A Duration",
+      "aUUID": "A UUID",
+      "aBlob": "A Blob",
+      "aAnyBlob": "A Any Blob",
+      "imageBlob": "Image Blob",
+      "aTextBlob": "A Text Blob"
+    }
+  }
+}
